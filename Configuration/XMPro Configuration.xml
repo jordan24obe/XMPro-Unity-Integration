@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Api>
+    <ApiRoute>https://xmpro-unity.azurewebsites.net/api</ApiRoute>
+    <Token></Token>
+  </Api>
+  <Scenes>
+  </Scenes>
+</Application>
