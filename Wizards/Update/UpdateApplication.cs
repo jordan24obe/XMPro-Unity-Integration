@@ -1,7 +1,8 @@
 ﻿using XMPro.Unity.Api;
 using UnityEditor;
+using System.Xml.Linq;
 
-#if(UNITY_EDITOR)
+#if (UNITY_EDITOR)
 public class UpdateApplication : ScriptableWizard
 {
     private Application application;
@@ -23,6 +24,14 @@ public class UpdateApplication : ScriptableWizard
 
     void OnWizardCreate()
     {
+        var xmlPath = UnityEngine.Application.dataPath + "/Configuration/XMPro Configuration.xml";
+        var xml = XDocument.Load(xmlPath);
+
+        var token = xml.Element("Application").Element("Api").Element("Token").Value;
+        var baseApiAddress = xml.Element("Application").Element("Api").Element("ApiRoute").Value;
+
+        application.token = token;
+        application.baseApiAddress = baseApiAddress;
         application.InitializeApi();
         if(application.name != ApplicationName)
         {
